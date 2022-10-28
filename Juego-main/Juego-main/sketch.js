@@ -4,7 +4,7 @@ var auto1, auto1img, auto1img2;
 var auto2, auto2img;
 
 function preload(){
-    backgroundImage = loadImage("./assets/pista1.png");
+    backgroundImage = loadImage("./assets/pista2.png");
     backgroundShop = loadImage("./assets/Fondo de Tienda.png");
     auto1img = loadAnimation("./assets/rojo1.png","./assets/rojo2.png")
     auto1img2 = loadImage("./assets/rojo2.png")
@@ -12,8 +12,13 @@ function preload(){
 }
 function setup(){
     createCanvas(windowWidth, windowHeight); 
-    //bg = createSprite(900, 300);
-    //bg.addImage(backgroundImage);
+    //console.log(windowWidth, windowHeight)
+    bg = createSprite(width/2, height/2, 2560, 969);
+    bg.velocityX=-4
+    bg.addImage(backgroundImage);
+    bg2 = createSprite(3840, height/2, 2560, 969);
+    bg2.velocityX=-4
+    bg2.addImage(backgroundImage);
     auto1 = createSprite(100, height-70, 10, 10)
     auto1.addAnimation("move", auto1img)
     auto1.scale = 3
@@ -23,17 +28,22 @@ function setup(){
     //bs = createSprite(200, 300, 100, 50)
     //bs.addImage(backgroundShop);
     //bs.scale = 2.23
+
+    
 }
 function draw(){
-    background(backgroundImage);
+    background(0);
     drawSprites();
     if (keyDown("right")) {
         auto1.x+=10
         
     }
-    //auto1.x = cameraX
+    camera.position.x = auto1.x
 
-    if (x<0) {
-        background.x = height/2
+    if (bg.x<-1280) {
+        bg.x = 3835
+    }
+    if (bg2.x<-1280) {
+        bg2.x = 3835
     }
 }
